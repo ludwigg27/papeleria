@@ -1,0 +1,70 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #d32f2f; /* color rojo Office Depot */
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productos {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.producto {
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 200px;
+  text-align: center;
+  background: #fff;
+}
+
+button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #b71c1c;
+}
+
+.carrito {
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.oculto {
+  display: none;
+}
+.pago {
+  background-color: #fafafa;
+  padding: 20px;
+  margin: 20px;
+  border: 2px solid #d32f2f;
+  width: 300px;
+}
+
+.pago input,
+.pago select {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+}
+
+.pago button {
+  width: 48%;
+  margin-top: 10px;
+}

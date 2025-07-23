@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>office depot</title>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2A9MWIwlQbcNZJZ0nG4Jf3SYXdPkMF--i2g&s" alt="">
+  <link rel="stylesheet" href="papeleria.css">
+</head>
+<body>
+
+  <header>
+    <h1>office depot</h1>
+    <button onclick="mostrarCarrito()">🛒 Carrito (<span id="contador">0</span>)</button>
+  </header>
+
+  <section class="productos">
+    <div class="producto">
+      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRuDLcMTrjl_CNai-Gww6E3VX74c4I4uMR5oZP1F_BU_GVaA6SFmfLs9jtktD9o4kKi7s-sUAqBai5pD9VDNZst45rSpNCrNoBYX0nfAgcGntaVrd3uKgp2uw" alt="Cuaderno">
+      <h3>Cuaderno Profesional</h3>
+      <p>$25.00</p>
+      <button onclick="agregarAlCarrito('Cuaderno Profesional', 25)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRN28Hoogw1q2j88RIh_vmMUOROnigTPxPX3--YHmzKlHnj6QxinLRfER0r4c6mxAkeTfsZQgP2EZXdgDHEwmqUJNyxzp2x-RChMAul7roBsSNAjlKsJwayA7c" alt="Pluma">
+      <h3>Pluma Azul</h3>
+      <p>$8.00</p>
+      <button onclick="agregarAlCarrito('Pluma Azul', 8)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQXns8vnUBtorFi2bNknOadNooqIVaHiW0TudhajoN6WJ7Fo98rl0YA-ea36JDfV8Hr0_jEcED6sICCrUJaK_lyVCLDl31-X_GBQiwQzKNYQHfxuKepzJwfyN4" alt="Pluma">
+      <h3>Plumones</h3>
+      <p>$908.00</p>
+      <button onclick="agregarAlCarrito('Plumones', 908)">Agregar</button>
+    </div>
+
+    <div class="producto">
+      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS_BJMqNnB4kQFAI8t6DO0CNrHP4S8cWSstoDl5a1tJRFrU97bunNPcF0472IEOmLq-IWPyldmUlO8kuD9wuROaKFjxHE-oB5j3pDuqbTvc43XkB8dGPlTWbA" alt="Lapiz">
+      <h3>Lapiz</h3>
+      <p>$62.00</p>
+      <button onclick="agregarAlCarrito('Lapiz', 62)">Agregar</button>
+    </div>
+  </section>
+
+  <section id="carrito" class="carrito oculto">
+  <h2>Carrito</h2>
+  <ul id="lista-carrito"></ul>
+  <p>Total: $<span id="total">0</span></p>
+  <button onclick="vaciarCarrito()">Vaciar carrito</button>
+  <button onclick="mostrarPago()">Pagar</button>
+</section>
+
+<section id="formulario-pago" class="oculto pago">
+  <h2>Datos para el Pago</h2>
+  <form onsubmit="return confirmarPago(event)">
+    <label>Nombre completo:</label>
+    <input type="text" required>
+
+    <label>Dirección:</label>
+    <input type="text" required>
+
+    <label>Método de pago:</label>
+    <select required>
+      <option value="">Selecciona uno</option>
+      <option value="Tarjeta">Tarjeta</option>
+      <option value="Efectivo">Efectivo</option>
+    </select>
+
+    <button type="submit">Confirmar Pago</button>
+    <button type="button" onclick="cancelarPago()">Cancelar</button>
+  </form>
+</section>
+
+  <script>
+    const carrito = [];
+    const lista = document.getElementById('lista-carrito');
+    const total = document.getElementById('total');
+    const contador = document.getElementById('contador');
+
+    function agregarAlCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      lista.innerHTML = '';
+      let totalCompra = 0;
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.producto} - $${item.precio}`;
+        lista.appendChild(li);
+        totalCompra += item.precio;
+      });
+      total.textContent = totalCompra;
+      contador.textContent = carrito.length;
+    }
+
+    function vaciarCarrito() {
+      carrito.length = 0;
+      actualizarCarrito();
+    }
+
+    function mostrarCarrito() {
+      document.getElementById('carrito').classList.toggle('oculto');
+    }
+  </script>
+
+</body>
+</html>
