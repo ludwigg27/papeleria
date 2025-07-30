@@ -3,40 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>office depot</title>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2A9MWIwlQbcNZJZ0nG4Jf3SYXdPkMF--i2g&s" alt="">
+  <title>Office Depot</title>
   <link rel="stylesheet" href="papeleria.css">
 </head>
 <body>
 
   <header>
-    <h1>office depot</h1>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2A9MWIwlQbcNZJZ0nG4Jf3SYXdPkMF--i2g&s" alt="Logo" height="60">
+    <h1>Office Depot</h1>
     <button onclick="mostrarCarrito()">🛒 Carrito (<span id="contador">0</span>)</button>
-    function mostrarPago() {
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-      document.getElementById('formulario-pago').classList.remove('oculto');
-      document.getElementById('carrito').classList.add('oculto');
-    }
-
-    function cancelarPago() {
-      document.getElementById('formulario-pago').classList.add('oculto');
-      document.getElementById('carrito').classList.remove('oculto');
-    }
-
-    function confirmarPago(event) {
-      event.preventDefault(); // evita que recargue la página
-
-      alert("¡Gracias por tu compra!\nTu pedido ha sido confirmado.");
-      vaciarCarrito(); // limpia el carrito
-      cancelarPago(); // oculta formulario y regresa
-      return false;
-    }
   </header>
 
   <section class="productos">
+    <!-- Producto 1 -->
     <div class="producto">
       <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRuDLcMTrjl_CNai-Gww6E3VX74c4I4uMR5oZP1F_BU_GVaA6SFmfLs9jtktD9o4kKi7s-sUAqBai5pD9VDNZst45rSpNCrNoBYX0nfAgcGntaVrd3uKgp2uw" alt="Cuaderno">
       <h3>Cuaderno Profesional</h3>
@@ -44,6 +23,7 @@
       <button onclick="agregarAlCarrito('Cuaderno Profesional', 25)">Agregar</button>
     </div>
 
+    <!-- Producto 2 -->
     <div class="producto">
       <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRN28Hoogw1q2j88RIh_vmMUOROnigTPxPX3--YHmzKlHnj6QxinLRfER0r4c6mxAkeTfsZQgP2EZXdgDHEwmqUJNyxzp2x-RChMAul7roBsSNAjlKsJwayA7c" alt="Pluma">
       <h3>Pluma Azul</h3>
@@ -51,49 +31,51 @@
       <button onclick="agregarAlCarrito('Pluma Azul', 8)">Agregar</button>
     </div>
 
+    <!-- Producto 3 -->
     <div class="producto">
-      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQXns8vnUBtorFi2bNknOadNooqIVaHiW0TudhajoN6WJ7Fo98rl0YA-ea36JDfV8Hr0_jEcED6sICCrUJaK_lyVCLDl31-X_GBQiwQzKNYQHfxuKepzJwfyN4" alt="Pluma">
+      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQXns8vnUBtorFi2bNknOadNooqIVaHiW0TudhajoN6WJ7Fo98rl0YA-ea36JDfV8Hr0_jEcED6sICCrUJaK_lyVCLDl31-X_GBQiwQzKNYQHfxuKepzJwfyN4" alt="Plumones">
       <h3>Plumones</h3>
       <p>$908.00</p>
       <button onclick="agregarAlCarrito('Plumones', 908)">Agregar</button>
     </div>
 
+    <!-- Producto 4 -->
     <div class="producto">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS_BJMqNnB4kQFAI8t6DO0CNrHP4S8cWSstoDl5a1tJRFrU97bunNPcF0472IEOmLq-IWPyldmUlO8kuD9wuROaKFjxHE-oB5j3pDuqbTvc43XkB8dGPlTWbA" alt="Lapiz">
-      <h3>Lapiz</h3>
+      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS_BJMqNnB4kQFAI8t6DO0CNrHP4S8cWSstoDl5a1tJRFrU97bunNPcF0472IEOmLq-IWPyldmUlO8kuD9wuROaKFjxHE-oB5j3pDuqbTvc43XkB8dGPlTWbA" alt="Lápiz">
+      <h3>Lápiz</h3>
       <p>$62.00</p>
-      <button onclick="agregarAlCarrito('Lapiz', 62)">Agregar</button>
+      <button onclick="agregarAlCarrito('Lápiz', 62)">Agregar</button>
     </div>
   </section>
 
   <section id="carrito" class="carrito oculto">
-  <h2>Carrito</h2>
-  <ul id="lista-carrito"></ul>
-  <p>Total: $<span id="total">0</span></p>
-  <button onclick="vaciarCarrito()">Vaciar carrito</button>
-  <button onclick="mostrarPago()">Pagar</button>
-</section>
+    <h2>Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <p>Total: $<span id="total">0</span></p>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+    <button onclick="mostrarPago()">Pagar</button>
+  </section>
 
-<section id="formulario-pago" class="oculto pago">
-  <h2>Datos para el Pago</h2>
-  <form onsubmit="return confirmarPago(event)">
-    <label>Nombre completo:</label>
-    <input type="text" required>
+  <section id="formulario-pago" class="oculto pago">
+    <h2>Datos para el Pago</h2>
+    <form onsubmit="return confirmarPago(event)">
+      <label>Nombre completo:</label>
+      <input type="text" required>
 
-    <label>Dirección:</label>
-    <input type="text" required>
+      <label>Dirección:</label>
+      <input type="text" required>
 
-    <label>Método de pago:</label>
-    <select required>
-      <option value="">Selecciona uno</option>
-      <option value="Tarjeta">Tarjeta</option>
-      <option value="Efectivo">Efectivo</option>
-    </select>
+      <label>Método de pago:</label>
+      <select required>
+        <option value="">Selecciona uno</option>
+        <option value="Tarjeta">Tarjeta</option>
+        <option value="Efectivo">Efectivo</option>
+      </select>
 
-    <button type="submit">Confirmar Pago</button>
-    <button type="button" onclick="cancelarPago()">Cancelar</button>
-  </form>
-</section>
+      <button type="submit">Confirmar Pago</button>
+      <button type="button" onclick="cancelarPago()">Cancelar</button>
+    </form>
+  </section>
 
   <script>
     const carrito = [];
@@ -126,6 +108,28 @@
 
     function mostrarCarrito() {
       document.getElementById('carrito').classList.toggle('oculto');
+    }
+
+    function mostrarPago() {
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      document.getElementById('formulario-pago').classList.remove('oculto');
+      document.getElementById('carrito').classList.add('oculto');
+    }
+
+    function cancelarPago() {
+      document.getElementById('formulario-pago').classList.add('oculto');
+      document.getElementById('carrito').classList.remove('oculto');
+    }
+
+    function confirmarPago(event) {
+      event.preventDefault();
+      alert("¡Gracias por tu compra!\nTu pedido ha sido confirmado.");
+      vaciarCarrito();
+      cancelarPago();
+      return false;
     }
   </script>
 
