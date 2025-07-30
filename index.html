@@ -12,6 +12,28 @@
   <header>
     <h1>office depot</h1>
     <button onclick="mostrarCarrito()">🛒 Carrito (<span id="contador">0</span>)</button>
+    function mostrarPago() {
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      document.getElementById('formulario-pago').classList.remove('oculto');
+      document.getElementById('carrito').classList.add('oculto');
+    }
+
+    function cancelarPago() {
+      document.getElementById('formulario-pago').classList.add('oculto');
+      document.getElementById('carrito').classList.remove('oculto');
+    }
+
+    function confirmarPago(event) {
+      event.preventDefault(); // evita que recargue la página
+
+      alert("¡Gracias por tu compra!\nTu pedido ha sido confirmado.");
+      vaciarCarrito(); // limpia el carrito
+      cancelarPago(); // oculta formulario y regresa
+      return false;
+    }
   </header>
 
   <section class="productos">
