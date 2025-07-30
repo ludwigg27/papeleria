@@ -2,69 +2,106 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background: #fff;
+  color: #333;
 }
 
 header {
-  background-color: #d32f2f; /* color rojo Office Depot */
+  background: #c00;
   color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header input[type="text"] {
+  padding: 0.5rem;
+  margin: 1rem;
+  width: 200px;
+}
+
+.switch {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  width: 40px;
+  height: 20px;
+  background: gray;
+  display: inline-block;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider::before {
+  left: 22px;
 }
 
 .productos {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .producto {
   border: 1px solid #ccc;
-  padding: 15px;
-  width: 200px;
+  padding: 1rem;
   text-align: center;
-  background: #fff;
+  transition: transform 0.3s;
 }
 
-button {
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  margin-top: 10px;
+.producto:hover {
+  transform: scale(1.05);
 }
 
-button:hover {
-  background-color: #b71c1c;
+.producto img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
-.carrito {
-  padding: 20px;
-  background-color: #f1f1f1;
+.carrito, .pago {
+  padding: 1rem;
 }
 
 .oculto {
   display: none;
 }
-.pago {
-  background-color: #fafafa;
-  padding: 20px;
-  margin: 20px;
-  border: 2px solid #d32f2f;
-  width: 300px;
+
+body.oscuro {
+  background: #121212;
+  color: #eee;
 }
 
-.pago input,
-.pago select {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
+body.oscuro header {
+  background: #222;
 }
 
-.pago button {
-  width: 48%;
-  margin-top: 10px;
+body.oscuro .producto {
+  border-color: #555;
 }
