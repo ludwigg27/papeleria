@@ -8,11 +8,10 @@
 </head>
 <body>
 
-  <header>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2A9MWIwlQbcNZJZ0nG4Jf3SYXdPkMF--i2g&s" alt="Logo" height="60">
-    <h1>Office Depot</h1>
-    <button onclick="mostrarCarrito()">🛒 Carrito (<span id="contador">0</span>)</button>
-  </header>
+<header>
+  <h1>office depot</h1>
+  <button onclick="mostrarCarrito()">🛒 Carrito (<span id="contador">0</span>)</button>
+</header>
 
   <section class="productos">
     <!-- Producto 1 -->
@@ -78,60 +77,60 @@
   </section>
 
   <script>
-    const carrito = [];
-    const lista = document.getElementById('lista-carrito');
-    const total = document.getElementById('total');
-    const contador = document.getElementById('contador');
+  const carrito = [];
+  const lista = document.getElementById('lista-carrito');
+  const total = document.getElementById('total');
+  const contador = document.getElementById('contador');
 
-    function agregarAlCarrito(producto, precio) {
-      carrito.push({ producto, precio });
-      actualizarCarrito();
-    }
+  function agregarAlCarrito(producto, precio) {
+    carrito.push({ producto, precio });
+    actualizarCarrito();
+  }
 
-    function actualizarCarrito() {
-      lista.innerHTML = '';
-      let totalCompra = 0;
-      carrito.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.producto} - $${item.precio}`;
-        lista.appendChild(li);
-        totalCompra += item.precio;
-      });
-      total.textContent = totalCompra;
-      contador.textContent = carrito.length;
-    }
+  function actualizarCarrito() {
+    lista.innerHTML = '';
+    let totalCompra = 0;
+    carrito.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.producto} - $${item.precio}`;
+      lista.appendChild(li);
+      totalCompra += item.precio;
+    });
+    total.textContent = totalCompra;
+    contador.textContent = carrito.length;
+  }
 
-    function vaciarCarrito() {
-      carrito.length = 0;
-      actualizarCarrito();
-    }
+  function vaciarCarrito() {
+    carrito.length = 0;
+    actualizarCarrito();
+  }
 
-    function mostrarCarrito() {
-      document.getElementById('carrito').classList.toggle('oculto');
-    }
+  function mostrarCarrito() {
+    document.getElementById('carrito').classList.toggle('oculto');
+  }
 
-    function mostrarPago() {
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-      document.getElementById('formulario-pago').classList.remove('oculto');
-      document.getElementById('carrito').classList.add('oculto');
+  function mostrarPago() {
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
     }
+    document.getElementById('formulario-pago').classList.remove('oculto');
+    document.getElementById('carrito').classList.add('oculto');
+  }
 
-    function cancelarPago() {
-      document.getElementById('formulario-pago').classList.add('oculto');
-      document.getElementById('carrito').classList.remove('oculto');
-    }
+  function cancelarPago() {
+    document.getElementById('formulario-pago').classList.add('oculto');
+    document.getElementById('carrito').classList.remove('oculto');
+  }
 
-    function confirmarPago(event) {
-      event.preventDefault();
-      alert("¡Gracias por tu compra!\nTu pedido ha sido confirmado.");
-      vaciarCarrito();
-      cancelarPago();
-      return false;
-    }
-  </script>
+  function confirmarPago(event) {
+      event.preventDefault(); 
+alert("¡Gracias por tu compra!\nTu pedido ha sido confirmado.");
+    vaciarCarrito();
+    cancelarPago();
+        return false;
+  }
+</script>
 
 </body>
 </html>
