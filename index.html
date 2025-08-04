@@ -3,69 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Office Depot - Papelería</title>
+  <title>Office Depot - Tienda</title>
   <link rel="stylesheet" href="papeleria.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #333; }
+    header { background: #c00; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    header h1 { margin: 0; font-size: 24px; }
+    nav a { margin: 0 10px; color: white; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .productos, .carrito, .pago { padding: 20px; }
+    .producto { display: inline-block; border: 1px solid #ccc; margin: 10px; padding: 10px; width: 180px; vertical-align: top; border-radius: 5px; }
+    .producto img { width: 100%; height: 150px; object-fit: cover; }
+    .producto h3 { font-size: 16px; }
+    button { background: #c00; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
+    button:hover { background: #a00; }
+    .oculto { display: none; }
+    #formulario-pago form { display: flex; flex-direction: column; max-width: 300px; }
+    #formulario-pago input, #formulario-pago select { margin-bottom: 10px; padding: 6px; }
+  </style>
 </head>
 <body>
 
   <header>
     <h1>Office Depot</h1>
-    <input type="text" id="buscador" placeholder="Buscar producto...">
+    <nav>
+      <a href="#" onclick="mostrarCategoria('computo')">Cómputo</a>
+      <a href="#" onclick="mostrarCategoria('hogar')">Hogar</a>
+      <a href="#" onclick="mostrarCategoria('papeleria')">Papelería</a>
+      <a href="#" onclick="mostrarCategoria('impresion')">Impresión</a>
+      <a href="#" onclick="mostrarCategoria('audio')">Audio y TV</a>
+    </nav>
     <button onclick="mostrarCarrito()">🛒 Carrito (<span id="contador">0</span>)</button>
-    <label class="switch">
-      <input type="checkbox" id="modoOscuroToggle" onchange="alternarModoOscuro()">
-      <span class="slider"></span>
-    </label>
   </header>
 
-  <section class="productos" id="lista-productos">
-    <!-- Productos -->
-    <div class="producto" data-nombre="Cuaderno Profesional">
-      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRuDLcMTrjl_CNai-Gww6E3VX74c4I4uMR5oZP1F_BU_GVaA6SFmfLs9jtktD9o4kKi7s-sUAqBai5pD9VDNZst45rSpNCrNoBYX0nfAgcGntaVrd3uKgp2uw" alt="Cuaderno">
-      <h3>Cuaderno Profesional</h3>
-      <p>$25.00</p>
-      <button onclick="agregarAlCarrito('Cuaderno Profesional', 25)">Agregar</button>
-    </div>
-    <div class="producto" data-nombre="Goma">
-      <img src="https://www.officedepot.com.mx/medias/100148230-2.jpg-1200ftw?context=bWFzdGVyfHJvb3R8MjI1MTkyfGltYWdlL2pwZWd8YURFMkwyZzRNQzh4TVRrNU5ERXhPVEUwTXpRMU5DOHhNREF4TkRneU16QXRNaTVxY0dkZk1USXdNR1owZHd8YzE3Mzk1MmNmMmZhNWE5ODI1OGU5MDYwMzczYmUzMGZlYThiM2M3ZTEyZDE2MDIwMjFkNzAxMzgyNjg5Y2NiYQ" alt="Goma">
-      <h3>Goma</h3>
-      <p>$8.55</p>
-      <button onclick="agregarAlCarrito('Goma', 8.55)">Agregar</button>
-    </div>
-    </div>
-    <div class="producto" data-nombre="Goma">
-      <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcScLiZVPiSYdZfbCVUYmerHyhsGKdLthnd1qpFB5iyC5naEk5ufIqhhPuVwZoFjdIh769tY9TswyVnW_H58kCB06v-97Nrf3B4A1OBCh8b453OhhqCFBxlICR4" alt="Lapizero">
-      <h3>Lapizero</h3>
-      <p>$8.55</p>
-      <button onclick="agregarAlCarrito('Lapizero', 8.55)">Agregar</button>
-    </div>
-    <div class="producto" data-nombre="Pluma Azul">
-      <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRN28Hoogw1q2j88RIh_vmMUOROnigTPxPX3--YHmzKlHnj6QxinLRfER0r4c6mxAkeTfsZQgP2EZXdgDHEwmqUJNyxzp2x-RChMAul7roBsSNAjlKsJwayA7c" alt="Pluma">
-      <h3>Pluma Azul</h3>
-      <p>$8.00</p>
-      <button onclick="agregarAlCarrito('Pluma Azul', 8)">Agregar</button>
-    </div>
-
-    <div class="producto" data-nombre="Plumones">
-      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQXns8vnUBtorFi2bNknOadNooqIVaHiW0TudhajoN6WJ7Fo98rl0YA-ea36JDfV8Hr0_jEcED6sICCrUJaK_lyVCLDl31-X_GBQiwQzKNYQHfxuKepzJwfyN4" alt="Plumones">
-      <h3>Plumones</h3>
-      <p>$908.00</p>
-      <button onclick="agregarAlCarrito('Plumones', 908)">Agregar</button>
-    </div>
-
-    <div class="producto" data-nombre="Lápiz">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS_BJMqNnB4kQFAI8t6DO0CNrHP4S8cWSstoDl5a1tJRFrU97bunNPcF0472IEOmLq-IWPyldmUlO8kuD9wuROaKFjxHE-oB5j3pDuqbTvc43XkB8dGPlTWbA" alt="Lapiz">
-      <h3>Lápiz</h3>
-      <p>$62.00</p>
-      <button onclick="agregarAlCarrito('Lápiz', 62)">Agregar</button>
-    </div>
+  <section class="productos" id="productos">
+    <!-- Productos dinámicos -->
   </section>
 
   <section id="carrito" class="carrito oculto">
     <h2>Carrito</h2>
     <ul id="lista-carrito"></ul>
-    <p>Subtotal: $<span id="subtotal">0</span></p>
-    <p>IVA (16%): $<span id="iva">0</span></p>
     <p>Total: $<span id="total">0</span></p>
     <button onclick="vaciarCarrito()">Vaciar carrito</button>
     <button onclick="mostrarPago()">Pagar</button>
@@ -81,22 +58,11 @@
       <input type="text" required>
 
       <label>Método de pago:</label>
-      <select id="metodoPago" onchange="mostrarCamposPago()" required>
+      <select required>
         <option value="">Selecciona uno</option>
         <option value="Tarjeta">Tarjeta</option>
         <option value="Efectivo">Efectivo</option>
       </select>
-
-      <div id="datos-tarjeta" class="oculto">
-        <label>Número de tarjeta:</label>
-        <input type="text">
-        <label>CVV:</label>
-        <input type="text">
-      </div>
-
-      <div id="datos-efectivo" class="oculto">
-        <p>Paga al momento de entrega</p>
-      </div>
 
       <button type="submit">Confirmar Pago</button>
       <button type="button" onclick="cancelarPago()">Cancelar</button>
@@ -104,45 +70,66 @@
   </section>
 
   <script>
+    const productosPorCategoria = {
+      computo: [
+        { nombre: 'Laptop HP', precio: 8500, imagen: 'https://m.media-amazon.com/images/I/71FuI8YvCNL._AC_SL1500_.jpg' },
+        { nombre: 'Mouse Inalámbrico', precio: 300, imagen: 'https://m.media-amazon.com/images/I/61LtuGzXeaL._AC_SL1500_.jpg' }
+      ],
+      hogar: [
+        { nombre: 'Silla ergonómica', precio: 2200, imagen: 'https://m.media-amazon.com/images/I/71L9TpP9FVL._AC_SL1500_.jpg' },
+        { nombre: 'Lámpara LED', precio: 400, imagen: 'https://m.media-amazon.com/images/I/61zG0K0xyyL._AC_SL1500_.jpg' }
+      ],
+      papeleria: [
+        { nombre: 'Cuaderno Profesional', precio: 25, imagen: 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRuDLcMTrjl_CNai-Gww6E3VX74c4I4uMR5oZP1F_BU_GVaA6SFmfLs9jtktD9o4kKi7s-sUAqBai5pD9VDNZst45rSpNCrNoBYX0nfAgcGntaVrd3uKgp2uw' },
+        { nombre: 'Pluma Azul', precio: 8, imagen: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRN28Hoogw1q2j88RIh_vmMUOROnigTPxPX3--YHmzKlHnj6QxinLRfER0r4c6mxAkeTfsZQgP2EZXdgDHEwmqUJNyxzp2x-RChMAul7roBsSNAjlKsJwayA7c' }
+      ],
+      impresion: [
+        { nombre: 'Cartuchos de tinta', precio: 620, imagen: 'https://m.media-amazon.com/images/I/81guUrcMFjL._AC_SL1500_.jpg' },
+        { nombre: 'Impresora Multifuncional', precio: 2300, imagen: 'https://m.media-amazon.com/images/I/71f5BbnVqKL._AC_SL1500_.jpg' }
+      ],
+      audio: [
+        { nombre: 'Bocinas Bluetooth', precio: 899, imagen: 'https://m.media-amazon.com/images/I/71n3I8L1mYL._AC_SL1500_.jpg' },
+        { nombre: 'Audífonos Sony', precio: 1200, imagen: 'https://m.media-amazon.com/images/I/61D4Z3yKPAL._AC_SL1500_.jpg' }
+      ]
+    };
+
     const carrito = [];
     const lista = document.getElementById('lista-carrito');
     const total = document.getElementById('total');
-    const subtotalEl = document.getElementById('subtotal');
-    const ivaEl = document.getElementById('iva');
     const contador = document.getElementById('contador');
+    const productosDiv = document.getElementById('productos');
+
+    function mostrarCategoria(categoria) {
+      productosDiv.innerHTML = '';
+      productosPorCategoria[categoria].forEach(prod => {
+        const div = document.createElement('div');
+        div.className = 'producto';
+        div.innerHTML = `
+          <img src="${prod.imagen}" alt="${prod.nombre}">
+          <h3>${prod.nombre}</h3>
+          <p>$${prod.precio}</p>
+          <button onclick="agregarAlCarrito('${prod.nombre}', ${prod.precio})">Agregar</button>
+        `;
+        productosDiv.appendChild(div);
+      });
+    }
 
     function agregarAlCarrito(producto, precio) {
-      const item = carrito.find(i => i.producto === producto);
-      if (item) {
-        item.cantidad++;
-      } else {
-        carrito.push({ producto, precio, cantidad: 1 });
-      }
+      carrito.push({ producto, precio });
       actualizarCarrito();
     }
 
     function actualizarCarrito() {
       lista.innerHTML = '';
-      let subtotal = 0;
-      carrito.forEach((item, index) => {
+      let totalCompra = 0;
+      carrito.forEach(item => {
         const li = document.createElement('li');
-        li.innerHTML = `${item.producto} x${item.cantidad} - $${item.precio * item.cantidad}
-          <button onclick="eliminarItem(${index})">❌</button>`;
+        li.textContent = `${item.producto} - $${item.precio}`;
         lista.appendChild(li);
-        subtotal += item.precio * item.cantidad;
+        totalCompra += item.precio;
       });
-      const iva = subtotal * 0.16;
-      const totalCompra = subtotal + iva;
-
-      subtotalEl.textContent = subtotal.toFixed(2);
-      ivaEl.textContent = iva.toFixed(2);
-      total.textContent = totalCompra.toFixed(2);
-      contador.textContent = carrito.reduce((sum, i) => sum + i.cantidad, 0);
-    }
-
-    function eliminarItem(index) {
-      carrito.splice(index, 1);
-      actualizarCarrito();
+      total.textContent = totalCompra;
+      contador.textContent = carrito.length;
     }
 
     function vaciarCarrito() {
@@ -152,6 +139,7 @@
 
     function mostrarCarrito() {
       document.getElementById('carrito').classList.toggle('oculto');
+      document.getElementById('formulario-pago').classList.add('oculto');
     }
 
     function mostrarPago() {
@@ -170,30 +158,15 @@
 
     function confirmarPago(event) {
       event.preventDefault();
-      alert("¡Gracias por tu compra!");
+      alert("¡Gracias por tu compra!\nTu pedido ha sido confirmado.");
       vaciarCarrito();
       cancelarPago();
       return false;
     }
 
-    function mostrarCamposPago() {
-      const metodo = document.getElementById('metodoPago').value;
-      document.getElementById('datos-tarjeta').classList.toggle('oculto', metodo !== 'Tarjeta');
-      document.getElementById('datos-efectivo').classList.toggle('oculto', metodo !== 'Efectivo');
-    }
-
-    function alternarModoOscuro() {
-      document.body.classList.toggle('oscuro');
-    }
-
-    document.getElementById('buscador').addEventListener('input', function () {
-      const filtro = this.value.toLowerCase();
-      const productos = document.querySelectorAll('.producto');
-      productos.forEach(prod => {
-        const nombre = prod.dataset.nombre.toLowerCase();
-        prod.style.display = nombre.includes(filtro) ? 'block' : 'none';
-      });
-    });
+    // Carga inicial
+    mostrarCategoria('papeleria');
   </script>
+
 </body>
 </html>
